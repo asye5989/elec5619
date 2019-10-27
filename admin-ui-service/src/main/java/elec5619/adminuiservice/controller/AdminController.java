@@ -16,9 +16,4 @@ public class AdminController {
 		return "admin dash";
 	}
 	
-	@Bean
-	@LoadBalanced
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
 }
