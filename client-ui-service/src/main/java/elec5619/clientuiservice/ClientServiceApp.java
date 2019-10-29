@@ -5,8 +5,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ZipkinProxyServiceApp {
+public class ClientServiceApp {
 	public static void main(String[] args) {
-		SpringApplication.run(ZipkinProxyServiceApp.class, args);
+		SpringApplication.run(ClientServiceApp.class, args);
 	}
 }
