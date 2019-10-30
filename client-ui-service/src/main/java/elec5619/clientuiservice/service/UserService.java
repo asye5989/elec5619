@@ -122,7 +122,7 @@ public class UserService {
 	public void scheduleFixedRateTask() {
 		//TODO 
 	    // check in match if any match score is negative
-		List<Match> list =matchRepository.findUnScoredMatches();
+		//List<Match> list =matchRepository.findUnScoredMatches();
 		
 		// for each match not score checjk if persoalitytype codes available fo both users
 		
