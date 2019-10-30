@@ -21,15 +21,11 @@
             "aot": false,
             "assets": ["src/favicon.ico", "src/assets"],
 
-            "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
-              "src/assets/css/animate.css"
-            ],
+            "styles": ["node_modules/bootstrap/dist/css/bootstrap.css"],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/assets/wow.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
