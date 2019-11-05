@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
-import org.springframework.messaging.simp.user.UserRegistryMessageHandler;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,7 +24,7 @@ public class UserService {
 
 	@Autowired
 	private AmqpTemplate rabbitTemplate;
-
+	          
 	@Value("${user.rabbitmq.exchange}")
 	private String userExchange;
 
@@ -87,8 +86,13 @@ public class UserService {
 		return mapper.map(dto, User.class);
 	}
 
-	public void deleteUser(User user) throws InvalidOperationException {
+	public void deleteUser(User user) throws InvalidOperationException {		
 		rabbitTemplate.convertAndSend(userExchange, deleteKey, mapper.map(user, UserDTO.class));
+		log.info("user profile deleted via user service");
+	}
+	
+	public void deleteUser(long id) throws InvalidOperationException {		
+		rabbitTemplate.convertAndSend(userExchange, deleteKey, mapper.map(new UserDTO().setId(id), UserDTO.class));
 		log.info("user profile deleted via user service");
 	}
 
@@ -115,8 +119,8 @@ public class UserService {
 	}
 
 	public void changePass(User dto) {
-		rabbitTemplate.convertAndSend(userExchange, matchKey, dto);
-		log.info("user profile makeMatch via user service");
+		rabbitTemplate.convertAndSend(gatewayExchange, gatewaychangePassKey, dto);
+		log.info("user profile password change at gateway");
 	}
 	
 

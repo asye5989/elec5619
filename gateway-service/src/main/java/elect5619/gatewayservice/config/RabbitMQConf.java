@@ -21,7 +21,7 @@ public class RabbitMQConf {
 	@Value("${gateway.rabbitmq.createQueue}")
 	String createUserQueueName;
 	
-	@Value("${gateway.rabbitmq.changePass}")
+	@Value("${gateway.rabbitmq.changePassQueue}")
 	String changePassQueName;
 	
 
@@ -31,7 +31,7 @@ public class RabbitMQConf {
 	@Value("${gateway.rabbitmq.routingkey.create}")
 	private String routingkeyCreate;
 	
-	@Value("${gateway.rabbitmq.routingkey.changePassQueue}")
+	@Value("${gateway.rabbitmq.routingkey.changePass}")
 	private String routingkeyChangePass;
 
 	@Bean
@@ -64,8 +64,7 @@ public class RabbitMQConf {
 	public MessageConverter jsonMessageConverter() {
 		return new Jackson2JsonMessageConverter();
 	}
-
-	
+ 
 	@Bean
 	public AmqpTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
 		final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);

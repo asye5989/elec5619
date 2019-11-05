@@ -50,10 +50,5 @@ public class PsychologyController {
 		return "portrait-" + key;
 	}
 	
-	@GetMapping("/getMatchScore")
-	@ResponseBody
-	public void getMatchScore(@RequestParam String personalityKey1, @RequestParam String personalityKey2) {
-		ResponseEntity.ok(new MBITResult().setScore(psychologyService.getMatchScore(personalityKey1, personalityKey2)));
-	}
-
+	
 }

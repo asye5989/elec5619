@@ -30,8 +30,11 @@ public class PsychologyService {
 
 	@Value("${user.rabbitmq.exchange}")
 	private String userExchange;
+	
 	@Value("${user.rabbitmq.routingkey.update}")
 	private String updateKey;
+	
+	
 
 	private List<MBITQuestion> mbitQuestions = new ArrayList<MBITQuestion>();
 

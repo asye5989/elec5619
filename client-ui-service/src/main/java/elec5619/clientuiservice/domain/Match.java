@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
+@Entity(name = "user_match")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,14 +27,15 @@ public class Match {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 
+	@OneToOne
+	@JoinColumn(name = "fk_female_partner_id",unique = true)
+	private User femalePartner;
+	
 	
 	@OneToOne
 	@JoinColumn(name = "fk_male_partner_id",unique = true) // only monogamous relationships 
 	private User malePartner;
 
-	@OneToOne
-	@JoinColumn(name = "fk_female_partner_id",unique = true)
-	private User femalePartner;
 	
 	@Column
 	private int matchScore=-1;
