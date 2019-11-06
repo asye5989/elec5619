@@ -1,12 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { JwtInterceptor } from "./JwtInterceptor";
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ]
+  providers: [JwtInterceptor],
+  imports: [CommonModule]
 })
-export class InterceptorsModule { }
+export class InterceptorsModule {}
