@@ -1,63 +1,82 @@
 <div [@routerTransition]>
-    <h2 class="text-muted">Dashboard <small>Statistics Overview</small></h2>
-    <div class="row">
-        <div class="col-md-12">
-            <ngb-carousel>
-                <ng-template ngbSlide *ngFor="let slider of sliders">
-                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
-                    <div class="carousel-caption">
-                        <h3>{{slider.label}}</h3>
-                        <p>{{slider.text}}</p>
-                    </div>
-                </ng-template>
-            </ngb-carousel>
-        </div>
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="overlay"></div>
+    <div class="container inner">
+      <h1>Hello, {{ user }}</h1>
+      <p id="welcome-message">
+        One Step at a time. You are on your way to build the perfect
+        realtionship.
+      </p>
     </div>
-    <hr>
-    <div class="row">
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'primary'" [icon]="'fa-comments'" [count]="26" [label]="'New Comments!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'warning'" [icon]="'fa-tasks'" [count]="12" [label]="'New task!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'New Orders!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'danger'" [icon]="'fa-support'" [count]="13" [label]="'New Tickets!'"></app-stat>
-        </div>
-    </div>
-    <hr />
-    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
-    <hr />
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="card card-default">
-                <div class="card-header">
-                    <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
-                </div>
-                <!-- /.card-header -->
-                <app-timeline></app-timeline>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-        </div>
-        <!-- /.col-lg-8 -->
-        <div class="col-lg-4">
-            <div class="card card-default mb-3">
-                <div class="card-header">
-                    <i class="fa fa-bell fa-fw"></i> Notifications card
-                </div>
-                <!-- /.card-header -->
-                <app-notification></app-notification>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+  </div>
 
-            <app-chat></app-chat>
-            <!-- /.card .chat-card -->
-        </div>
-        <!-- /.col-lg-4 -->
+  <div class="px-5">
+    <div class="row">
+      <div class="col-md-3">
+        <feature-article
+          [title]="'No, We Don\'t Create Our Own Reality'"
+          [author]="'John Amodeo Ph.D., MFT'"
+          [ref]="'Psychology Today'"
+          [posted]="'24,\ Octobe\ 2019'"
+          [intro]="
+            'Stuff happens. Things don’t always go our way. Do most of our troubles result from overwhelming external circumstances beyond our control? Or are problems self-created?'
+          "
+          [src]="
+            'https://www.psychologytoday.com/us/blog/intimacy-path-toward-spirituality/201911/no-we-dont-create-our-own-reality'
+          "
+          [id]="'article1'"
+        ></feature-article>
+      </div>
+
+      <div class="col-md-3">
+        <feature-article
+          [title]="'Changing Relationships: Gain Control by Giving Up Control'"
+          [author]="'Hal Shorey Ph.D.'"
+          [ref]="'Psychology Today'"
+          [posted]="'06, Novemeber 2019'"
+          [intro]="
+            '“Before you leave him, leave him alone.” That is what the older women in one 12-step group used to say when talking to younger peers who were struggling with their codependency. The premise is simple; sometimes it is better to allow a problem to fix itself....'
+          "
+          [src]="
+            'https://www.psychologytoday.com/au/blog/the-freedom-change/201911/changing-relationships-gain-control-giving-control'
+          "
+          [id]="'article2'"
+        ></feature-article>
+      </div>
+
+      <div class="col-md-3">
+        <feature-article
+          [title]="'Love and the Illusion of Certainty'"
+          [author]="'Steven Stosny, Ph.D.'"
+          [ref]="'Psychology Today'"
+          [posted]="'24, October 2019'"
+          [intro]="
+            'If you are like most people, you rode into married life on powerful waves of affection and intimacy, waves that crashed occasionally into self-doubt and apprehension, only to rise again, stronger than ever. In other words, you married for love. That was the easy part.'
+          "
+          [src]="
+            'https://www.psychologytoday.com/us/blog/anger-in-the-age-entitlement/201911/love-and-the-illusion-certainty'
+          "
+          [id]="'article3'"
+        ></feature-article>
+      </div>
+      <div class="col-md-3">
+        <feature-article
+          [title]="'Why Do We Empower Others But Often Belittle Our Partners?'"
+          [author]="'Assael Romanelli Ph.D.'"
+          [ref]="'Psychology Today'"
+          [posted]="'01, November 2019'"
+          [intro]="
+            'or over a decade, I have been empowering people all over the world, both in therapy and in workshops, to be bigger and stronger. I celebrate their light, strength, and gifts, and encourage them to bring more of themselves to the world....'
+          "
+          [src]="
+            'https://www.psychologytoday.com/us/blog/the-other-side-relationships/201911/why-do-we-empower-others-often-belittle-our-partners'
+          "
+          [id]="'article4'"
+        ></feature-article>
+      </div>
     </div>
+
+    <hr />
+  </div>
 </div>
