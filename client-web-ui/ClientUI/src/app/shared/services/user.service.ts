@@ -1,13 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { User } from "../domain/user";
+import { AuthService } from "./auth.service";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: "root"
 })
 export class UserService {
-    constructor() {}
+  constructor(private authService: AuthService) {}
 
-    authenticate(username: string, password: string) {
-        // assume success always
-        //  user:user=new User();
-    }
+  getUser(): User {
+    return this.authService.getAuthenticatedCurrentUser();
+  }
+
+  getRelationshipScore(): number {
+    return 100;
+  }
 }

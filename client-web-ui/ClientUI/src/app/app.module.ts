@@ -9,7 +9,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AuthGuard } from "./shared";
 import { User } from "./shared/domain/user";
-import { FormsModule } from "@angular/forms";
 import { JwtInterceptor } from "./shared/interceptors/JwtInterceptor";
 
 @NgModule({
@@ -19,8 +18,7 @@ import { JwtInterceptor } from "./shared/interceptors/JwtInterceptor";
     BrowserAnimationsModule,
     HttpClientModule,
     LanguageTranslationModule,
-    AppRoutingModule,
-    FormsModule
+    AppRoutingModule
   ],
   declarations: [AppComponent],
   providers: [

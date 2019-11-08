@@ -11,7 +11,7 @@ export class AuthService {
   public login(username: string, pass: string): boolean {
     let user: User = new User();
     user.username = username;
-    user.fullname = "test user";
+    user.fullname = "Ahmed Syed";
     user.token = "fake-token";
     user.id = 1;
     localStorage.setItem("user", JSON.stringify(user));
@@ -21,6 +21,7 @@ export class AuthService {
 
   public logout() {
     localStorage.removeItem("user");
+    this.currentUser = null;
   }
 
   public isLoginValid(): boolean {
@@ -43,7 +44,9 @@ export class AuthService {
       return null;
     }
   }
-
+  public getAuthenticatedCurrentUser(): User {
+    return this.refreshCurrentUser();
+  }
   public getJwtToken(): string {
     let token = null;
     if (this.currentUser == null) this.refreshCurrentUser();
