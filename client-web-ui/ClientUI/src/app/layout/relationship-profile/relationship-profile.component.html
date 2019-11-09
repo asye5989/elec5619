@@ -1,45 +1,48 @@
 <ng-template *ngIf="show; then showBlock; else notShowBlock"> </ng-template>
 
-<div id="showBlock" class="card" style="width: 50%;">
-  <div class="card-body">
-    <h5 class="card-title">Relationship Profile</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Score:{{ score }} %</h6>
-    <p class="card-text">
-      {{ comment }}
-    </p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-
-  <div class="card my-5">
-    <div class="card-header">
-      <h5>Relathionship Progress</h5>
-      <p>
-        This graph models your progress in Relationship. yoiu should take
-        persaonlity tests after regular interval, recommedned to take in 3
-        months and also work with pscyholgical tools.
-      </p>
-    </div>
+<ng-template #showBlock>
+  <div id="relationship-profile" class="card" style="width: 50%;">
     <div class="card-body">
-      <canvas
-        baseChart
-        height="130"
-        [datasets]="lineChartData"
-        [labels]="lineChartLabels"
-        [options]="lineChartOptions"
-        [colors]="lineChartColors"
-        [legend]="lineChartLegend"
-        [chartType]="lineChartType"
-      >
-      </canvas>
+      <h5 class="card-title">Relationship Profile</h5>
+      <h6 *ngIf="score >= 0" class="card-subtitle mb-2 text-muted">
+        Score:{{ score }} %
+      </h6>
+      <p class="card-text">
+        {{ comment }}
+      </p>
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+
+    <div class="card my-5">
+      <div class="card-header">
+        <h5>Relathionship Progress</h5>
+        <p>
+          This graph models your progress in Relationship. yoiu should take
+          persaonlity tests after regular interval, recommedned to take in 3
+          months and also work with pscyholgical tools.
+        </p>
+      </div>
+      <div *ngIf="score >= 0" class="card-body">
+        <canvas
+          baseChart
+          height="130"
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+        >
+        </canvas>
+      </div>
     </div>
   </div>
-
-  <ng-template #notShowBlock>
-    <p>
-      Relationship score not available. Please make sure that you and your
-      partner have taken personality type test. Contact administrator if you
-      have any other issues.
-    </p>
-  </ng-template>
-</div>
+</ng-template>
+<ng-template #notShowBlock>
+  <p>
+    Relationship score not available. Please make sure that you and your partner
+    have taken personality type test. Contact administrator if you have any
+    other issues.
+  </p>
+</ng-template>

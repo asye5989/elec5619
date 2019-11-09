@@ -6,25 +6,8 @@
     style="height:100px;width:auto"
   />
   <div class="card-body">
-    <h5 class="card-title">My Profile</h5>
+    <h5 class="card-title">My Partner Profile ({{ name }})</h5>
     <p class="card-text">Personality Type : {{ personalityType }}</p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit possimus
-      velit quos, modi officia facere eum eius aperiam nesciunt hic quia.
-      Facilis magni quam eaque quasi dolores? Aut commodi nisi voluptate
-      deserunt omnis, adipisci iusto id corrupti sint minima. Qui consectetur
-      repellendus nulla minus eius, similique ex officiis iure, nemo eaque
-      quibusdam natus veritatis nisi quas? Voluptatibus ex quod beatae!
-      Blanditiis totam magnam repellat possimus quia! Nihil natus ipsum eveniet,
-      quibusdam aliquam hic ad, laboriosam quos tempora quidem vero illum eaque
-      ut fuga pariatur! Obcaecati velit eaque quaerat tempore placeat earum
-      accusamus, eius, recusandae ipsum modi sint ducimus hic ipsam.
-    </p>
-  </div>
-
-  <div class="card-body">
-    <a [routerLink]="['/psych-tools']" class="card-link"
-      >Re-Evaluate Personality</a
-    >
+    <div [innerHTML]="personalityTypeDetailInnerHTML"></div>
   </div>
 </div>

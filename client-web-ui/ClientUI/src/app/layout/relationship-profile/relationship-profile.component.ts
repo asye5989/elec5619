@@ -13,17 +13,17 @@ export class RelationshipProfileComponent implements OnInit {
   show: boolean = false;
   comment: string = "";
 
-  public lineChartLegend: boolean = false;
-  public lineChartType: string = "line";
+  lineChartData: Array<any>;
+  lineChartLabels: Array<any>;
+
+  lineChartLegend: boolean = false;
+  lineChartType: string = "line";
   // lineChart
-  public lineChartData: Array<any> = [
-    { data: [40], label: "Relationship Score" }
-  ];
-  public lineChartLabels: Array<any> = ["TEST1"];
-  public lineChartOptions: any = {
+
+  lineChartOptions: any = {
     responsive: false
   };
-  public lineChartColors: Array<any> = [
+  lineChartColors: Array<any> = [
     {
       // grey
       backgroundColor: "rgba(148,159,177,0.2)",
@@ -53,25 +53,27 @@ export class RelationshipProfileComponent implements OnInit {
     }
   ];
 
-  // events
-  public chartClicked(e: any): void {
-    // console.log(e);
-  }
-
-  public chartHovered(e: any): void {
-    // console.log(e);
-  }
-
   constructor(private userService: UserService) {}
 
   ngOnInit() {
     console.log("initialized relationsjhip component");
-    this.refreshScore();
+    this.updateRelationshipStats();
   }
 
-  refreshScore() {
-    this.score = this.userService.getRelationshipScore();
+  private updateRelationshipStats() {
+    let x: [any[], any[]] = this.userService.getRelationshipStats();
 
+    if (x[0] && x[1] && x[0].length == x[1].length) {
+      this.score = x[1][x[1].length - 1]; //latest score is in end
+      this.lineChartData = [{ data: x[1], label: "Relationship Score" }];
+      this.lineChartLabels = x[0];
+    } else {
+      this.score = 1;
+      this.comment =
+        "Score not available. Please ensure that you and your partner have taken persoanlity assesment test and then try back after some time.";
+    }
+
+    this.score;
     if (this.score >= 0) {
       this.show = true;
       switch (this.score) {

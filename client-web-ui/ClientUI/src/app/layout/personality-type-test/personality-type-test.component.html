@@ -1,0 +1,73 @@
+<h2>Myers-Briggs Type Indicator Test</h2>
+<h3 class="text-muted">{{ date }}</h3>
+
+<ng-template
+  *ngIf="
+    testAllowed;
+    then mbtiFormContainer;
+    else testUnavailableMessageContainer
+  "
+></ng-template>
+
+<ng-template #mbtiFormContainer>
+  <form
+    #mbtiform="ngForm"
+    (ngSubmit)="submitForm(mbtiform)"
+    class="form form-register"
+    novalidate
+  >
+    <button type="button" class="btn  btn-info mt-4" (click)="selectA()">
+      Select Option A as default ( demo purpose to avoid validation errors and
+      save time)
+    </button>
+    <div *ngFor="let q of questions; index as i" class="mb-4">
+      <div class="card">
+        <div class="card-header">
+          Question {{ q.num + 1 }} ) {{ q.questiontext }}
+        </div>
+        <div id="resp{{ q.num }}" class="ml2 d-none text-danger">
+          Response to this questions is requried
+        </div>
+        <div class="card-body">
+          <p>
+            <label class="label">
+              <input
+                id="resp{{ q.num }}A"
+                type="radio"
+                class="radio"
+                value="A"
+                name="resp{{ q.num }}"
+                [(ngModel)]="resp[i].data"
+                #resp{{q.num}}="ngModel"
+              />
+              {{ q.optionA }}</label
+            >
+          </p>
+          <p>
+            <label class="label">
+              <input
+                id="resp{{ q.num }}B"
+                type="radio"
+                class="radio mr-1"
+                value="B"
+                name="resp{{ q.num }}"
+                #resp{{q.num}}="ngModel"
+                [(ngModel)]="resp[i].data"
+              />
+              {{ q.optionB }}</label
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="form-field">
+      <input type="submit" class="btn btn-primary" value="Submit" />
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #testUnavailableMessageContainer>
+  <p class="text-justify mt-4 my-2" style="font-size :2rem;">
+    {{ testUnavailableMessage }}
+  </p>
+</ng-template>
