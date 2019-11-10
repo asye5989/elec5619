@@ -41,7 +41,7 @@ public class SecurityService implements UserDetailsService {
 	private UserRepository userRepository;
 
 	public User authenticateUser(String email, String sha512) throws AuthenticationException {
-		User user = userRepository.findFirstByUsernameAndPassword(email, sha512)
+ 		User user = userRepository.findFirstByUsernameAndPassword(email, sha512)
 				.orElseThrow(() -> new AuthenticationException());
 		userRepository.save(user.setAssignedToken(JWTUtil.buildToken(user.getUsername(), SIGN_KEY)));
 		return user;

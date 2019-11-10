@@ -10,8 +10,10 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class RabbitMQConf {
@@ -71,4 +73,11 @@ public class RabbitMQConf {
 		rabbitTemplate.setMessageConverter(jsonMessageConverter());
 		return rabbitTemplate;
 	}
+	
+
+	@Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 }

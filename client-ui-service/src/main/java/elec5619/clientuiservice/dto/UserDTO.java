@@ -1,5 +1,7 @@
 package elec5619.clientuiservice.dto;
 
+import java.io.Serializable;
+
 import elec5619.clientuiservice.domain.User;
 import elec5619.common.domain.Gender;
 import lombok.AllArgsConstructor;
@@ -18,7 +20,11 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Accessors(chain = true)
 
-public class UserDTO {
+public class UserDTO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Long id;
 	protected String username;
 	protected String fullname;

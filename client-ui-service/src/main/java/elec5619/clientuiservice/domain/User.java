@@ -17,7 +17,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-@Entity
+@Entity(name="user")
 @DynamicUpdate
 @Getter
 @Setter

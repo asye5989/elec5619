@@ -12,8 +12,9 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 public class UserDTO {
-String name;
-String PictureUrl;
-String email;
-String persionalityType;  
+String username;
+String token;
+Long id; 
+String fullname;
+
 }

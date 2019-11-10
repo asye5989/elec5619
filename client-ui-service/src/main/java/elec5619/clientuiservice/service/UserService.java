@@ -18,7 +18,7 @@ import elec5619.clientuiservice.repository.UserRepository;
 import elec5619.common.domain.Gender;
 
 @Service
-public class UserService { 
+public class UserService {
 
 	@Autowired
 	UserRepository userRepository;
@@ -42,10 +42,17 @@ public class UserService {
 		}
 	}
 
+	public User getUserbyUsername(String username) {
+		return userRepository.getUserByUsername(username);
+	}
+
 	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
-
-	 
+	
+	public String getUserPersonalityTypeKey(Long id) {
+		log.info("Persnalitytype identification"+id);
+		return userRepository.findById(id).get().getPersonalityTypeKey();
+	}
 
 }

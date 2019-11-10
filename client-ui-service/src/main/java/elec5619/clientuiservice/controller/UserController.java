@@ -3,16 +3,18 @@ package elec5619.clientuiservice.controller;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import elec5619.clientuiservice.domain.Match;
 import elec5619.clientuiservice.domain.User;
 import elec5619.clientuiservice.dto.UserDTO;
 import elec5619.clientuiservice.service.UserService;
-import elec5619.common.domain.Gender;
-
+import elec5619.common.domain.Gender; 
 /**
  * 
  * @author ahmed
@@ -37,8 +39,16 @@ public class UserController {
 		} else {
 			userDTO.setPartner(match.getMalePartner());
 		}
+		ResponseEntity.ok();
+	}
 
-		ResponseEntity.ok(userDTO);
+	
+	@GetMapping("/userinfo/{username}")
+	public ResponseEntity<UserDTO>  getUserbyUsername(@PathVariable String username) {
+		User user = userService.getUserbyUsername(username);		 
+		ModelMapper mapper = new ModelMapper();
+		UserDTO userDTO = mapper.map(user, UserDTO.class);	
+		return ResponseEntity.ok(userDTO);
 	}
 
 	@GetMapping("/user/all")
@@ -46,6 +56,11 @@ public class UserController {
 		ResponseEntity.ok(userService.getAllUsers());
 	}
 
+	@CrossOrigin
+	@GetMapping("/user/{id}/personality")
+	public ResponseEntity<UserDTO>  getUserPersonlaityDetails(@PathVariable Long id) {		 
+		return ResponseEntity.ok(new UserDTO().setId(id).setPersonalityTypeKey(userService.getUserPersonalityTypeKey(id)));
+	}
 	
 	
 	

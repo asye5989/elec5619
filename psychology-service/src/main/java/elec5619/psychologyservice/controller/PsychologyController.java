@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import elec5619.psychologyservice.domain.MBITQuestion;
 import elec5619.psychologyservice.domain.MBITResult;
 import elec5619.psychologyservice.domain.MBTIResponse;
 import elec5619.psychologyservice.dto.UserDTO;
@@ -28,9 +29,9 @@ public class PsychologyController {
 
 	private ModelMapper mapper = new ModelMapper();
 
-	@GetMapping("/presentMBIT")
-	public void presentMBITQuestions() {// simple presenttion
-		ResponseEntity.ok(psychologyService.getMBITQuestionsList());
+	@GetMapping("/presentMBTI")
+	public ResponseEntity<List<MBITQuestion>> presentMBITQuestions() {// simple presenttion
+	 return	ResponseEntity.ok(psychologyService.getMBITQuestionsList());
 	}
 
 	@PostMapping("/processAnswers")

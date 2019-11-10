@@ -12,8 +12,8 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 public class MBITQuestion {
-	protected  Integer number;
-	protected String text;
+	protected  Integer num;
+	protected String questiontext;
 	protected String optionA;
 	protected String optionB;
 }

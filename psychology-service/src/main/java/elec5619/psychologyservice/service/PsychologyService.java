@@ -31,7 +31,7 @@ public class PsychologyService {
 	@Value("${user.rabbitmq.exchange}")
 	private String userExchange;
 	
-	@Value("${user.rabbitmq.routingkey.update}")
+	@Value("${user.rabbitmq.routingkey.match.update}")
 	private String updateKey;
 	
 	
@@ -174,10 +174,10 @@ public class PsychologyService {
 			// strictly formatted file to read each line new question the two line option
 			for (String line; (line = br.readLine()) != null;) {
 				MBITQuestion question = new MBITQuestion();
-				// start of line question number then dot then text of question
+				// start of line question number then dot then questiontext of question
 				int pointer = line.indexOf('.');
-				question.setNumber(Integer.parseInt(line.substring(0, pointer).trim()));
-				question.setText(line.substring(pointer + 1).trim());
+				question.setNum(Integer.parseInt(line.substring(0, pointer).trim()));
+				question.setQuestiontext(line.substring(pointer + 1).trim());
 				line = br.readLine();
 				question.setOptionA(line.substring(2));// ignore letter a.
 				line = br.readLine();

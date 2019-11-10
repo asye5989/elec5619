@@ -116,7 +116,7 @@ public class UserMessageProcessingService {
 		log.info("deleted user with id:" + user.getId() + " username" + user.getUsername());
 	}
 
-	@RabbitListener(queues = "${user.rabbitmq.queue.match}")
+	@RabbitListener(queues = "${user.rabbitmq.queue.match.update}")
 	public void processMatchedUsers(final UserDTO dto) {
 		try {
 			User user = mapper.map(dto, User.class);
@@ -152,7 +152,7 @@ public class UserMessageProcessingService {
 
 	}
 
-	@RabbitListener(queues = "${user.rabbitmq.routingkey.match.delete}")
+	@RabbitListener(queues = "${user.rabbitmq.queue.match.delete}")
 	public void processDeletedMatch(final UserDTO dto) {
 
 		User user = mapper.map(dto, User.class);
@@ -164,11 +164,11 @@ public class UserMessageProcessingService {
 		log.info("Match deletion  processed for " + user.toString());
 	}
 
-	@RabbitListener(queues = "${user.rabbitmq.routingkey.match.update}")
+	@RabbitListener(queues = "${user.rabbitmq.queue.match.update}")
 	public void processUpdateMatch(final MatchDTO dto) {
 		try {
 			Match match = matchRepository.findById(dto.getMatchId()).get();
-			match.setMatchScore(dto.getScore());
+			match.setScore(dto.getScore());
 			matchRepository.save(match);
 			log.info("Match processed");
 		} catch (Exception e) {

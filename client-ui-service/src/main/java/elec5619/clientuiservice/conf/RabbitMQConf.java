@@ -10,8 +10,10 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration 
 public class RabbitMQConf  {
@@ -24,12 +26,16 @@ public class RabbitMQConf  {
 
 	@Value("${user.rabbitmq.queue.create}")
 	private String queueCreateName;
+	
 	@Value("${user.rabbitmq.queue.update}")
 	private String queueUpdateName;
+	
 	@Value("${user.rabbitmq.queue.delete}")
 	private String queueDeleteName;
-	@Value("${user.rabbitmq.queue.match}")
+	
+	@Value("${user.rabbitmq.queue.match.update}")
 	private String queueMatcName;
+	
 	@Value("${user.rabbitmq.queue.match.delete}")
 	private String queueMatchDeleteName;
 
@@ -39,7 +45,7 @@ public class RabbitMQConf  {
 	private  String upateRoutingkey;
 	@Value("${user.rabbitmq.routingkey.delete}")
 	private  String deleteRoutingkey;
-	@Value("${user.rabbitmq.routingkey.match}")
+	@Value("${user.rabbitmq.routingkey.match.update}")
 	private  String matchKey;
 	@Value("${user.rabbitmq.routingkey.match.delete}")
 	private  String matchDeletekey;
@@ -65,7 +71,7 @@ public class RabbitMQConf  {
 	}
 
 	@Bean
-	Queue queueMatchDeleteName() {
+	Queue queueMatchDelete() {
 		return new Queue(queueMatchDeleteName, true);
 	}
 
@@ -95,8 +101,8 @@ public class RabbitMQConf  {
 	}
 
 	@Bean
-	Binding binding5(Queue queueMatchDeleteName, DirectExchange exchange) {
-		return BindingBuilder.bind(queueMatchDeleteName).to(exchange).with(matchDeletekey);
+	Binding binding5(Queue queueMatchDelete, DirectExchange exchange) {
+		return BindingBuilder.bind(queueMatchDelete).to(exchange).with(matchDeletekey);
 	}
 
 	@Bean
@@ -112,6 +118,14 @@ public class RabbitMQConf  {
 	public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
 	    return new Jackson2JsonMessageConverter();
 	}
+	
+	@Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+	
+	
 	
 	  
 }

@@ -37,7 +37,10 @@ public class Match {
 	private User malePartner;
 
 	
-	@Column
-	private int matchScore=-1;
+	@Column(name="score")
+	private int score=-1;
+	
+	@Column(name="score_date")
+	private String scoreDate; 
 
 }

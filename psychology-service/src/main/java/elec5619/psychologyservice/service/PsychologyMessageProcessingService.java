@@ -26,7 +26,7 @@ public class PsychologyMessageProcessingService {
 	@Value("${user.rabbitmq.exchange}")
 	private String userExchange;
 
-	@Value("${user.rabbitmq.routingkey.match.update.key}")
+	@Value("${user.rabbitmq.routingkey.match.update}")
 	private String matchUpdateKey;
 
 	/*
